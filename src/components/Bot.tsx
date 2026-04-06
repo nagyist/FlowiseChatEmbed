@@ -927,6 +927,14 @@ export const Bot = (botProps: BotProps & { class?: string }) => {
     const chatId = params.chatId;
     const input = params.question;
     params.streaming = true;
+
+    const customFetch = async (input: RequestInfo | URL, init?: RequestInit): Promise<Response> => {
+      if (props.onRequest && init) {
+        await props.onRequest(init);
+      }
+      return fetch(input, init);
+    };
+
     fetchEventSource(`${props.apiHost}/api/v1/prediction/${chatflowid}`, {
       openWhenHidden: true,
       method: 'POST',
@@ -934,6 +942,7 @@ export const Bot = (botProps: BotProps & { class?: string }) => {
       headers: {
         'Content-Type': 'application/json',
       },
+      fetch: customFetch,
       async onopen(response) {
         if (response.ok && response.headers.get('content-type')?.startsWith(EventStreamContentType)) {
           return; // everything's good
