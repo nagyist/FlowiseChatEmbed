@@ -70,12 +70,12 @@ jobs:
           fi
 
       - name: Checkout FlowiseChatEmbed
-        uses: actions/checkout@v4
+        uses: actions/checkout@v6
         with:
           ref: main
           fetch-depth: 1
           path: flowise-embed
-          token: ${{ secrets.PAT_GITHUB }}
+          token: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Checkout FlowiseEmbedReact
         uses: actions/checkout@v4
@@ -83,10 +83,10 @@ jobs:
           repository: FlowiseAI/FlowiseEmbedReact
           fetch-depth: 1
           path: flowise-embed-react
-          token: ${{ secrets.PAT_GITHUB }}
+          token: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Setup Node.js
-        uses: actions/setup-node@v4
+        uses: actions/setup-node@v6
         with:
           node-version: '20'
           registry-url: 'https://registry.npmjs.org'
@@ -210,7 +210,7 @@ jobs:
           ref: main
           fetch-depth: 1
           path: flowise-embed
-          token: ${{ secrets.PAT_GITHUB }}
+          token: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Checkout FlowiseEmbedReact
         uses: actions/checkout@v4
@@ -218,7 +218,7 @@ jobs:
           repository: FlowiseAI/FlowiseEmbedReact
           fetch-depth: 1
           path: flowise-embed-react
-          token: ${{ secrets.PAT_GITHUB }}
+          token: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Setup Node.js
         uses: actions/setup-node@v4
@@ -291,7 +291,7 @@ jobs:
         env:
           VERSION: ${{ needs.dry-run.outputs.version }}
           TAG: ${{ inputs.tag }}
-          GH_TOKEN: ${{ secrets.PAT_GITHUB }}
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
           BRANCH="chore/bump-flowise-embed-${VERSION}"
           if git ls-remote --exit-code --heads origin "$BRANCH" > /dev/null 2>&1; then
@@ -331,7 +331,7 @@ jobs:
         run: |
           npm pkg set "version=${NEW_VERSION}"
           npm pkg set "devDependencies.flowise-embed=${NEW_VERSION}"
-          yarn upgrade flowise-embed@${NEW_VERSION}
+          yarn upgrade "flowise-embed@${NEW_VERSION}"
 
       - name: Install flowise-embed-react dependencies
         working-directory: flowise-embed-react
@@ -376,7 +376,7 @@ jobs:
         env:
           VERSION: ${{ needs.dry-run.outputs.version }}
           TAG: ${{ inputs.tag }}
-          GH_TOKEN: ${{ secrets.PAT_GITHUB }}
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
           BRANCH="chore/bump-flowise-embed-react-${VERSION}"
           if git ls-remote --exit-code --heads origin "$BRANCH" > /dev/null 2>&1; then
