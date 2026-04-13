@@ -75,15 +75,15 @@ jobs:
           ref: main
           fetch-depth: 1
           path: flowise-embed
-          token: ${{ secrets.GITHUB_TOKEN }}
+          token: ${{ secrets.PAT_GITHUB }}
 
       - name: Checkout FlowiseEmbedReact
-        uses: actions/checkout@v4
+        uses: actions/checkout@v6
         with:
           repository: FlowiseAI/FlowiseEmbedReact
           fetch-depth: 1
           path: flowise-embed-react
-          token: ${{ secrets.GITHUB_TOKEN }}
+          token: ${{ secrets.PAT_GITHUB }}
 
       - name: Setup Node.js
         uses: actions/setup-node@v6
@@ -205,23 +205,23 @@ jobs:
       pull-requests: write
     steps:
       - name: Checkout FlowiseChatEmbed
-        uses: actions/checkout@v4
+        uses: actions/checkout@v6
         with:
           ref: main
           fetch-depth: 1
           path: flowise-embed
-          token: ${{ secrets.GITHUB_TOKEN }}
+          token: ${{ secrets.PAT_GITHUB }}
 
       - name: Checkout FlowiseEmbedReact
-        uses: actions/checkout@v4
+        uses: actions/checkout@v6
         with:
           repository: FlowiseAI/FlowiseEmbedReact
           fetch-depth: 1
           path: flowise-embed-react
-          token: ${{ secrets.GITHUB_TOKEN }}
+          token: ${{ secrets.PAT_GITHUB }}
 
       - name: Setup Node.js
-        uses: actions/setup-node@v4
+        uses: actions/setup-node@v6
         with:
           node-version: '20'
           registry-url: 'https://registry.npmjs.org'
@@ -291,7 +291,7 @@ jobs:
         env:
           VERSION: ${{ needs.dry-run.outputs.version }}
           TAG: ${{ inputs.tag }}
-          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GH_TOKEN: ${{ secrets.PAT_GITHUB }}
         run: |
           BRANCH="chore/bump-flowise-embed-${VERSION}"
           if git ls-remote --exit-code --heads origin "$BRANCH" > /dev/null 2>&1; then
@@ -376,7 +376,7 @@ jobs:
         env:
           VERSION: ${{ needs.dry-run.outputs.version }}
           TAG: ${{ inputs.tag }}
-          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GH_TOKEN: ${{ secrets.PAT_GITHUB }}
         run: |
           BRANCH="chore/bump-flowise-embed-react-${VERSION}"
           if git ls-remote --exit-code --heads origin "$BRANCH" > /dev/null 2>&1; then
