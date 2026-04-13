@@ -250,9 +250,11 @@ jobs:
           registry-url: 'https://registry.npmjs.org'
 
       - name: Configure git
+        env:
+          APP_ID: ${{ secrets.FLOWISE_BOT_APP_ID }}
         run: |
           git config --global user.name  "flowise-publish-bot[bot]"
-          git config --global user.email "${{ secrets.FLOWISE_BOT_APP_ID }}+flowise-publish-bot[bot]@users.noreply.github.com"
+          git config --global user.email "${APP_ID}+flowise-publish-bot[bot]@users.noreply.github.com"
 
       - name: Log publish intent
         env:
