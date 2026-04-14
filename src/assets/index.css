@@ -484,12 +484,7 @@ textarea {
   line-height: 1.4;
 }
 
-.chatbot-host-bubble.prose h4,
-.chatbot-host-bubble .prose h4,
-.chatbot-host-bubble.prose h5,
-.chatbot-host-bubble .prose h5,
-.chatbot-host-bubble.prose h6,
-.chatbot-host-bubble .prose h6 {
+:is(.chatbot-host-bubble.prose, .chatbot-host-bubble .prose) :is(h4, h5, h6) {
   font-size: 0.95em;
   font-weight: 600;
   margin-top: 0.3em;
@@ -546,13 +541,13 @@ textarea {
   margin-bottom: 0.3em;
 }
 
-.chatbot-host-bubble.prose :first-child,
-.chatbot-host-bubble .prose :first-child {
+.chatbot-host-bubble.prose > :first-child,
+.chatbot-host-bubble .prose > :first-child {
   margin-top: 0;
 }
 
-.chatbot-host-bubble.prose :last-child,
-.chatbot-host-bubble .prose :last-child {
+.chatbot-host-bubble.prose > :last-child,
+.chatbot-host-bubble .prose > :last-child {
   margin-bottom: 0;
 }
 
