@@ -208,7 +208,6 @@ jobs:
   # Runs only after a reviewer approves via the npm-publish environment gate.
   # Publishes both packages to npm, then creates version bump PRs.
   publish:
-    if: false
     needs: dry-run
     runs-on: ubuntu-latest
     environment: npm-publish
