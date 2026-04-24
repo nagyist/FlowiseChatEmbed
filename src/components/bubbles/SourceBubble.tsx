@@ -84,13 +84,10 @@ export const SourceBubble = (props: Props) => {
         padding: '6px 12px',
         'background-color': isHovered() ? hoverBg() : baseBg(),
         border: isHovered() ? '1px solid #d1d5db' : '1px solid #e5e7eb',
-        'border-radius': '9999px',
+        'border-radius': '36px',
         'font-size': '12px',
         'line-height': '1.2',
-        color: '#374151',
         cursor: 'pointer',
-        'box-shadow': '0 1px 1px rgba(0,0,0,0.02)',
-        transition: 'background-color 120ms ease, border-color 120ms ease, transform 120ms ease',
       }}
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}

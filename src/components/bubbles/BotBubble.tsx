@@ -185,11 +185,11 @@ export const BotBubble = (props: Props) => {
     }
   };
 
-  const removeDuplicateURL = (_message: MessageType) => {
+  const removeDuplicateURL = (message: MessageType) => {
     const visitedURLs: string[] = [];
     const newSourceDocuments: any = [];
 
-    const sourceDocuments = Array.isArray(props.message.sourceDocuments) ? props.message.sourceDocuments : [];
+    const sourceDocuments = Array.isArray(message.sourceDocuments) ? message.sourceDocuments : [];
     sourceDocuments.forEach((source: any) => {
       if (!source || !source.metadata) return;
       if (isValidURL(source.metadata.source) && !visitedURLs.includes(source.metadata.source)) {
@@ -520,9 +520,7 @@ export const BotBubble = (props: Props) => {
                 style={{
                   display: 'block',
                   'font-size': '11px',
-                  'letter-spacing': '0.06em',
                   'text-transform': 'uppercase',
-                  color: '#6b7280',
                   'margin-bottom': '4px',
                 }}
               >
